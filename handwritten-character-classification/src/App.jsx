@@ -15,7 +15,7 @@ class App extends Component {
         backgroundColor: '#00FFDC',
       },
       clear: false,
-      resultJSON: {},
+      result: [],
     };
   }
 
@@ -33,7 +33,12 @@ class App extends Component {
       url: '/predict/',
       data: img,
     }).then((result) => {
-      this.setState({ resultJSON: result.data.result_v });
+      const shorted = [];
+      for (const key in result.data.result_v) {
+        shorted.push([key, result.data.result_v[key]]);
+      }
+      shorted.sort((a, b) => b[1] - a[1]);
+      this.setState({ result: shorted });
     });
   }
 
@@ -47,7 +52,7 @@ class App extends Component {
           <DrawableCanvas {...this.state} />
           <input type="button" value="Predict" onClick={() => this.handleOnSubmit()} />
           <input type="button" value="Clear" onClick={() => this.handleOnClickClear()} />
-          <Result resultJSON={this.state.resultJSON} />
+          <Result result={this.state.result} />
         </div>
       </div>
     );
