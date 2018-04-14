@@ -3,7 +3,6 @@ import os
 from flask import Flask, request, render_template, jsonify
 from scipy.misc import imsave, imread, imresize
 import numpy as np
-import argparse
 from keras.models import model_from_yaml
 import re
 import base64
