@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DrawableCanvas from 'react-drawable-canvas';
 import './App.css';
+import Result from './components/Result/Result';
 
 const axios = require('axios');
 
@@ -14,6 +15,7 @@ class App extends Component {
         backgroundColor: '#00FFDC',
       },
       clear: false,
+      resultJSON: {},
     };
   }
 
@@ -30,7 +32,9 @@ class App extends Component {
       method: 'post',
       url: '/predict/',
       data: img,
-    }).then(console.log);
+    }).then((result) => {
+      this.setState({ resultJSON: result.data.result_v });
+    });
   }
 
   render() {
@@ -43,6 +47,7 @@ class App extends Component {
           <DrawableCanvas {...this.state} />
           <input type="button" value="Predict" onClick={() => this.handleOnSubmit()} />
           <input type="button" value="Clear" onClick={() => this.handleOnClickClear()} />
+          <Result resultJSON={this.state.resultJSON} />
         </div>
       </div>
     );

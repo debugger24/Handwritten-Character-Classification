@@ -5,13 +5,13 @@ import './resultRow.css';
 const ResultRow = props => (
   <div className="Result-ResultRow-container">
     <p>{props.resultLabel}</p>
-    <p>{props.resultLabelValue}</p>
+    <p>{props.resultValue}</p>
   </div>
 );
 
 ResultRow.propTypes = {
   resultLabel: PropTypes.string.isRequired,
-  resultLabelValue: PropTypes.number.isRequired,
+  resultValue: PropTypes.number.isRequired,
 };
 
 export default ResultRow;
