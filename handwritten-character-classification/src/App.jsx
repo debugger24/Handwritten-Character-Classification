@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import DrawableCanvas from 'react-drawable-canvas';
 import './App.css';
 
+const axios = require('axios');
+
 class App extends Component {
   constructor() {
     super();
@@ -22,8 +24,13 @@ class App extends Component {
   }
 
   handleOnSubmit() {
-    const a = document.getElementsByTagName('canvas')[0];
-    console.log(a);
+    const canvasObj = document.getElementsByTagName('canvas')[0];
+    const img = canvasObj.toDataURL('image/png');
+    axios({
+      method: 'post',
+      url: '/predict/',
+      data: img,
+    }).then(console.log);
   }
 
   render() {
