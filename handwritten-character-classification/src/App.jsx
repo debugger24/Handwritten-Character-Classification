@@ -21,8 +21,9 @@ class App extends Component {
     });
   }
 
-  handleOnSubmit(event) {
-    console.log(event);
+  handleOnSubmit() {
+    const a = document.getElementsByTagName('canvas')[0];
+    console.log(a);
   }
 
   render() {
